@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="text" id="item" placeholder="Item" />
+    <button class="additem">Add</button>
+
+    <script>
+      const item = document.getElementById("item");
+      const btn = document.querySelector(".additem");
+      //   console.log(item, btn);
+      const arr = [];
+
+      function addItem(e) {
+        const value = item.value;
+        arr.push(value);
+        displayItem();
+      }
+
+      function emptyArr(array) {
+        console.log(array.length);
+        const text = document.createElement("p");
+        text.textContent = "No Records";
+        console.log(text);
+        btn.insertAdjacentElement("afterend", text);
+      }
+
+      function fullArr(array) {
+        console.log(array.length);
+        const html = arr.map((item) => {
+          return `<p>${item}</p>`;
+        });
+        btn.insertAdjacentHTML = html;
+      }
+      function displayItem() {
+        arr.length === 0 ? emptyArr(arr) : fullArr(arr);
+      }
+      btn.addEventListener("click", addItem);
+      displayItem();
+    </script>
+  </body>
+</html>
